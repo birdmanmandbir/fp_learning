@@ -1,22 +1,21 @@
 import {
   compose,
-  curry,
   head,
   last,
   prop,
   replace,
   add,
-  split,
   map,
   filter,
   reduce,
-  match,
   toLower,
   join,
   flip,
   sortBy,
 } from "ramda";
+import R from "ramda";
 import accounting from "accounting";
+import { concat } from "ramda";
 
 // 示例数据
 export const CARS = [
@@ -51,10 +50,7 @@ export const CARS = [
 // 练习 1:
 // ============
 // 使用 _.compose() 重写下面这个函数。提示：_.prop() 是 curry 函数
-export const isLastInStock = compose(
-  prop("in_stock"),
-  last
-);
+export const isLastInStock = compose(prop("in_stock"), last);
 
 // 练习 2:
 // ============
@@ -98,9 +94,7 @@ export const availablePrices = compose(
 // ============
 // 重构使之成为 pointfree 函数。提示：可以使用 _.flip()
 
-const append = curry((a, b) => {
-  return b + a;
-});
+const append = flip(concat);
 
 export const fastestCar = compose(
   append(" is the fastest"),
