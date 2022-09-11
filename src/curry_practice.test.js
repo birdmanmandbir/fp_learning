@@ -6,6 +6,7 @@ import {
   take,
   takeThree,
   slice,
+  match,
 } from "./curry_practice";
 
 describe("curry practice test", () => {
@@ -21,6 +22,9 @@ describe("curry practice test", () => {
       ["in", "beautiful", "sky"],
     ]);
   });
+  it('match', () => {
+    expect(match(/q/i, "camels")).toBeNull();
+  })
   it("filterQs", () => {
     expect(
       filterQs(["quick", "camels", "quarry", "over", "quails"])

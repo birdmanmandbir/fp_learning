@@ -1,5 +1,10 @@
-import { curry } from "lodash";
-import { split, map, filter, match, reduce } from "./support";
+import {
+  curry,
+  split,
+  map,
+  filter,
+  reduce
+} from "ramda";
 
 // 练习 1
 //==============
@@ -12,6 +17,9 @@ export const words = split(" ");
 
 export const sentences = map(words);
 
+export const match = curry(function(what, x) {
+  return x.match(what);
+});
 // 练习 2
 //==============
 // 通过局部调用（partial apply）移除所有参数
