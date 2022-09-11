@@ -11,12 +11,14 @@ specifiers:
   accounting: ^0.4.1
   jest: ^29.0.2
   lodash: ^4.17.21
+  moment: ^2.29.4
   prettier: ^2.7.1
   ramda: ^0.28.0
 
 dependencies:
   accounting: 0.4.1
   lodash: 4.17.21
+  moment: 2.29.4
   ramda: 0.28.0
 
 devDependencies:
@@ -2844,6 +2846,10 @@ packages:
     dependencies:
       brace-expansion: 1.1.11
     dev: true
+
+  /moment/2.29.4:
+    resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
+    dev: false
 
   /ms/2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
