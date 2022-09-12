@@ -3,7 +3,6 @@ import _ from "ramda";
 import { ex1, ex2, ex3, ex4, user } from "./monad_practice";
 import { either } from "./Either";
 import { run } from "./IO";
-import { join } from "../lib/lib";
 
 describe("monad", () => {
   it("ex1", () => {
@@ -29,5 +28,12 @@ describe("monad", () => {
     expect(emails2).toStrictEqual("emailed: aa@qq.com,aa1@qq.com");
     const emails3 = io("aa1@qqcom");
     expect(emails3).not.toBeDefined();
+  });
+  it("ex4_2", () => {
+    const io = _.compose(either(_.identity, run), ex4);
+    const emails = io("aaqq.com");
+    expect(emails).toStrictEqual("invalid email");
+    const emails2 = io("aa1@qq.com");
+    expect(emails2).toStrictEqual("emailed: aa1@qq.com");
   });
 });
