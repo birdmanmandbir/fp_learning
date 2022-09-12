@@ -2,20 +2,20 @@ import { curry } from "ramda";
 import _ from "ramda";
 import moment from "moment";
 import { Functor } from "./Functor";
-import { map } from "../lib/lib";
+import { anyFunc, map } from "../lib/lib";
 
-class Left<T> extends Functor<T> {
-  static of(x: any) {
-    return new Left<any>(x);
+export class Left<T> extends Functor<T> {
+  static of<V>(x: V) {
+    return new Left<V>(x);
   }
   map(f: any) {
     return this;
   }
 }
 
-class Right<T> extends Functor<T> {
-  static of(x: any) {
-    return new Right<any>(x);
+export class Right<T> extends Functor<T> {
+  static of<V>(x: V) {
+    return new Right<V>(x);
   }
   map(f: any) {
     return Right.of(f(this.__value));
@@ -75,7 +75,7 @@ zoltar({ birthdate: "balloons!" });
 // Left("Birth date could not be parsed")
 // 由于Left的map实际上均不会执行，因此Left的值不会被打印
 
-const either = curry(function <T>(f: any, g: any, e: Functor<T>) {
+export const either = curry(function <T>(f: anyFunc, g: anyFunc, e: Functor<T>) {
   switch (e.constructor) {
     case Left:
       return f(e.__value);
