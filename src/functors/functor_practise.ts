@@ -120,14 +120,8 @@ const save = function (x: string) {
   });
 };
 
-const report = function (err: string) {
-  return new IO(function () {
-    return err;
-  });
-};
-
 export const ex8: (u: User) => IO<() => string> = _.compose(
-  either(report, save),
+  either(IO.of, save),
   ex7,
   _.prop("name")
 );
