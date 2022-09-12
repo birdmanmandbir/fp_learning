@@ -14,6 +14,9 @@ export class Maybe<T> extends Functor<T> {
   map(f: any) {
     return this.isNothing() ? Maybe.of(null) : Maybe.of(f(this.__value));
   }
+  join() {
+    return this.isNothing() ? Maybe.of(null) : this.__value;
+  }
 }
 
 Maybe.of("Malkovich Malkovich").map(match(/a/gi)).toString();

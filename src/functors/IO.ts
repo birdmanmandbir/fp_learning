@@ -12,5 +12,8 @@ export class IO<T extends anyFunc> extends Functor<T> {
   map<V extends anyFunc>(f: V) {
     return new IO(_.compose(f, this.__value));
   }
-}
 
+  join() {
+    return this.__value();
+  }
+}
