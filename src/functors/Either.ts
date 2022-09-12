@@ -11,6 +11,9 @@ export class Left<T> extends Functor<T> {
   map(f: any) {
     return this;
   }
+  join() {
+    return this;
+  }
 }
 
 export class Right<T> extends Functor<T> {
@@ -19,6 +22,9 @@ export class Right<T> extends Functor<T> {
   }
   map(f: any) {
     return Right.of(f(this.__value));
+  }
+  join() {
+    return this.__value;
   }
 }
 
@@ -75,7 +81,11 @@ zoltar({ birthdate: "balloons!" });
 // Left("Birth date could not be parsed")
 // 由于Left的map实际上均不会执行，因此Left的值不会被打印
 
-export const either = curry(function <T>(f: anyFunc, g: anyFunc, e: Functor<T>) {
+export const either = curry(function <T>(
+  f: anyFunc,
+  g: anyFunc,
+  e: Functor<T>
+) {
   switch (e.constructor) {
     case Left:
       return f(e.__value);

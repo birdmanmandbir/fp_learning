@@ -26,9 +26,22 @@ export const id = function (a: any) {
 
 // TODO Too much any!
 export const join = (f: any) => {
-  return f.join()
-}
+  return f.join();
+};
 
 export const flatMap = curry(function (f: anyFunc, m: Functor<any>) {
-  return _.compose(join, map(f))(m)
+  return _.compose(join, map(f))(m);
+});
+
+const promiseJoin = (m: Promise<any>) => m.then(id);
+
+const promiseOf = (x: any) =>
+  new Promise((resolve, reject) => {
+    resolve(x);
+  });
+
+const promiseMap = curry((f: anyFunc, m: Promise<any>) => m.then(f));
+
+export const promiseFlatMap = curry((f: anyFunc, m: Promise<any>) => {
+  return _.compose(promiseJoin, promiseMap(f))(m);
 });

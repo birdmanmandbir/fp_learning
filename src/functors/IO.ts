@@ -17,3 +17,7 @@ export class IO<T extends anyFunc> extends Functor<T> {
     return this.__value();
   }
 }
+
+export const run = <T extends anyFunc>(io: IO<T>) => {
+  return io.__value();
+};
