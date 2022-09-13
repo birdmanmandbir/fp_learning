@@ -16,6 +16,10 @@ export class IO<T extends anyFunc> extends Functor<T> {
   join() {
     return this.__value();
   }
+
+  ap(other_functor: Functor<any>) {
+    return other_functor.map(this.__value())
+  }
 }
 
 export const run = <T extends anyFunc>(io: IO<T>) => {

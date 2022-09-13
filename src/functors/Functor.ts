@@ -9,4 +9,7 @@ export class Functor<T> {
   map(f: any) {
     return f(this.__value);
   }
+  ap(other_functor: Functor<any>) {
+    return other_functor.map(this.__value);
+  }
 }

@@ -45,3 +45,30 @@ const promiseMap = curry((f: anyFunc, m: Promise<any>) => m.then(f));
 export const promiseFlatMap = curry((f: anyFunc, m: Promise<any>) => {
   return _.compose(promiseJoin, promiseMap(f))(m);
 });
+
+export const liftA2 = curry(function (
+  f: anyFunc,
+  functor1: Functor<any>,
+  functor2: Functor<any>
+) {
+  return functor1.map(f).ap(functor2);
+});
+
+export const liftA3 = curry(function (f, functor1, functor2, functor3) {
+  return functor1.map(f).ap(functor2).ap(functor3);
+});
+
+export const promiseAp = curry(
+  (other_functor: Promise<any>, this_functor: Promise<any>) => {
+    return other_functor.then(this_functor.then);
+  }
+);
+
+export const promiseLiftA2 = curry(function (
+  f,
+  functor1: Promise<any>,
+  functor2: Promise<any>
+) {
+  // TODO 不知道为啥用(x) => functor2.then(x), 直接用functor2.then就报错
+  return functor1.then(f).then((x) => functor2.then(x));
+});
