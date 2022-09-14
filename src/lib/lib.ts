@@ -29,6 +29,7 @@ export const join = (f: any) => {
   return f.join();
 };
 
+// alias: chain
 export const flatMap = curry(function (f: anyFunc, m: Functor<any>) {
   return _.compose(join, map(f))(m);
 });
